@@ -1,4 +1,3 @@
----// Variables
 local CloneCore = cloneref(game.CoreGui)
 local CloneScreenGui = Instance.new("ScreenGui")
 local Camera = game:GetService("Workspace").Camera
@@ -8,8 +7,8 @@ local InputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 
 -- Menu/UI Creation
-if not isfile("eclipse.wtf") then
-   makefolder("eclipse.wtf")
+if not isfile("invision.cc") then
+   makefolder("invision.cc")
 end
 
 local menu = game:GetObjects("rbxassetid://16853049525")[1] -- 16657455028
@@ -83,7 +82,7 @@ local function createWatermark()
       local ping = string.format('%.0f', game.Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
       local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
       local fpsValue = string.split(game.Stats.Workspace.Heartbeat:GetValueString(), ".")[1]
-      WaterMarkLabel.Text = 'eclipse.<font color="rgb(189, 172, 255)">wtf</font> - game: <font color="rgb(189, 172, 255)">' .. gameName .. '</font> / fps: <font color="rgb(189, 172, 255)">' .. fpsValue .. '</font> / ping: <font color="rgb(189, 172, 255)">' .. ping .. '</font> / time: <font color="rgb(189, 172, 255)">' .. time .. '</font>'
+      WaterMarkLabel.Text = 'invision.<font color="rgb(189, 172, 255)">cc</font> - game: <font color="rgb(189, 172, 255)">' .. gameName .. '</font> / fps: <font color="rgb(189, 172, 255)">' .. fpsValue .. '</font> / ping: <font color="rgb(189, 172, 255)">' .. ping .. '</font> / time: <font color="rgb(189, 172, 255)">' .. time .. '</font>'
    end
    
    function Watermark:SetVisible(Visible)
@@ -138,8 +137,15 @@ local function createWatermark()
    return Watermark
 end
 
+local placename;
+if game.PlaceId == 286090429 then
+   placename = "Arsenal" 
+else
+   placename = "Universal"
+end
+
 local library = {
-   Title = 'eclipse.<font color="rgb(189, 172, 255)">wtf</font> | fallen survival',
+   Title = 'invision.<font color="rgb(189, 172, 255)">cc</font> | ' .. placename,
    keybind = Enum.KeyCode.RightBracket,
    Watermark = createWatermark(),
       Colors = {
@@ -1994,7 +2000,7 @@ local library = {
                               if v == x then return true end
                               end return false end
                               function library:createConfig()
-                                 makefolder("eclipse.wtf")
+                                 makefolder("invision.cc")
                                  local name = library.flags["config_name"]
                                  if contains(library.options["config_box"].values, name) then return library:Notify(name..".cfg already exists!", 5) end
                                  if name == "" then return library:Notify("You need to put a name in!", 5) end
@@ -2006,13 +2012,13 @@ local library = {
                                  else jig[i] = v
                                  end
                               end
-                              writefile("eclipse.wtf/"..name..".cfg",game:GetService("HttpService"):JSONEncode(jig))
+                              writefile("invision.cc/"..name..".cfg",game:GetService("HttpService"):JSONEncode(jig))
                               library:Notify("Succesfully created config "..name..".cfg!", 5)
                               library:refreshConfigs()
                            end
 
                            function library:saveConfig()
-                              makefolder("eclipse.wtf")
+                              makefolder("invision.cc")
                               local name = library.flags["config_box"]
                               local jig = {}
                               for i,v in next, library.flags do
@@ -2063,8 +2069,7 @@ local library = {
 
                            function library:refreshConfigs()
                               local tbl = {}
-                              for i,v in next, listfiles("eclipse.wtf") do table.insert(tbl,v) end
+                              for i,v in next, listfiles("invision.cc") do table.insert(tbl,v) end
                               library.options["config_box"].refresh(tbl)
                            end
                         return library
-
